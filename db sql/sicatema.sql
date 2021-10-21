@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 19, 2020 at 08:01 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Host: 127.0.0.1
+-- Generation Time: Oct 21, 2021 at 06:04 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,28 +19,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `projek_perpus`
+-- Database: `sicatema`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_biaya_denda`
+-- Table structure for table `kode_area`
 --
 
-CREATE TABLE `tbl_biaya_denda` (
-  `id_biaya_denda` int(11) NOT NULL,
-  `harga_denda` varchar(255) NOT NULL,
-  `stat` varchar(255) NOT NULL,
-  `tgl_tetap` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `kode_area` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `kode` varchar(50) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_biaya_denda`
+-- Dumping data for table `kode_area`
 --
 
-INSERT INTO `tbl_biaya_denda` (`id_biaya_denda`, `harga_denda`, `stat`, `tgl_tetap`) VALUES
-(1, '4000', 'Aktif', '2019-11-23');
+INSERT INTO `kode_area` (`id`, `id_user`, `kode`, `status`) VALUES
+(1, 1, 'Toni', 2),
+(2, 2, 'Rendi', 2);
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,7 @@ CREATE TABLE `tbl_buku` (
   `penerbit` varchar(255) DEFAULT NULL,
   `pengarang` varchar(255) DEFAULT NULL,
   `thn_buku` varchar(255) DEFAULT NULL,
-  `isi` text DEFAULT NULL,
+  `isi` text,
   `jml` int(11) DEFAULT NULL,
   `tgl_masuk` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -71,46 +72,6 @@ CREATE TABLE `tbl_buku` (
 
 INSERT INTO `tbl_buku` (`id_buku`, `buku_id`, `id_kategori`, `id_rak`, `sampul`, `isbn`, `lampiran`, `title`, `penerbit`, `pengarang`, `thn_buku`, `isi`, `jml`, `tgl_masuk`) VALUES
 (8, 'BK008', 2, 1, '0', '132-123-234-231', '0', 'CARA MUDAH BELAJAR PEMROGRAMAN C++', 'INFORMATIKA BANDUNG', 'BUDI RAHARJO ', '2012', '<table class=\"table table-bordered\" style=\"background-color: rgb(255, 255, 255); width: 653px; color: rgb(51, 51, 51);\"><tbody><tr><td style=\"padding: 8px; line-height: 1.42857; border-color: rgb(244, 244, 244);\">Tipe Buku</td><td style=\"padding: 8px; line-height: 1.42857; border-color: rgb(244, 244, 244);\">Kertas</td></tr><tr><td style=\"padding: 8px; line-height: 1.42857; border-color: rgb(244, 244, 244);\">Bahasa</td><td style=\"padding: 8px; line-height: 1.42857; border-color: rgb(244, 244, 244);\">Indonesia</td></tr></tbody></table>', 23, '2019-11-23 11:49:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_denda`
---
-
-CREATE TABLE `tbl_denda` (
-  `id_denda` int(11) NOT NULL,
-  `pinjam_id` varchar(255) NOT NULL,
-  `denda` varchar(255) NOT NULL,
-  `lama_waktu` int(11) NOT NULL,
-  `tgl_denda` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_denda`
---
-
-INSERT INTO `tbl_denda` (`id_denda`, `pinjam_id`, `denda`, `lama_waktu`, `tgl_denda`) VALUES
-(3, 'PJ001', '0', 0, '2020-05-20'),
-(5, 'PJ009', '0', 0, '2020-05-20');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_kategori`
---
-
-CREATE TABLE `tbl_kategori` (
-  `id_kategori` int(11) NOT NULL,
-  `nama_kategori` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_kategori`
---
-
-INSERT INTO `tbl_kategori` (`id_kategori`, `nama_kategori`) VALUES
-(2, 'Pemrograman');
 
 -- --------------------------------------------------------
 
@@ -140,8 +101,8 @@ CREATE TABLE `tbl_login` (
 --
 
 INSERT INTO `tbl_login` (`id_login`, `anggota_id`, `user`, `pass`, `level`, `nama`, `tempat_lahir`, `tgl_lahir`, `jenkel`, `alamat`, `telepon`, `email`, `tgl_bergabung`, `foto`) VALUES
-(1, 'AG001', 'anang', '202cb962ac59075b964b07152d234b70', 'Petugas', 'Anang', 'Bekasi', '1999-04-05', 'Laki-Laki', 'Ujung Harapan', '089618173609', 'fauzan1892@codekop.com', '2019-11-20', 'user_1567327491.png'),
-(2, 'AG002', 'fauzan', '202cb962ac59075b964b07152d234b70', 'Anggota', 'Fauzan', 'Bekasi', '1998-11-18', 'Laki-Laki', 'Bekasi Barat', '08123123185', 'fauzanfalah21@gmail.com', '2019-11-21', 'user_1589911243.png');
+(1, 'AG001', 'anang', '202cb962ac59075b964b07152d234b70', 'Admin', 'Anang', 'Bekasi', '1999-04-05', 'Laki-Laki', 'Ujung Harapan', '089618173609', 'fauzan1892@codekop.com', '2019-11-20', 'user_1567327491.png'),
+(2, 'AG002', 'fauzan', '202cb962ac59075b964b07152d234b70', 'Admin', 'Fauzan', 'Bekasi', '1998-11-18', 'Laki-Laki', 'Bekasi Barat', '08123123185', 'fauzanfalah21@gmail.com', '2019-11-21', 'user_1589911243.png');
 
 -- --------------------------------------------------------
 
@@ -172,48 +133,38 @@ INSERT INTO `tbl_pinjam` (`id_pinjam`, `pinjam_id`, `anggota_id`, `buku_id`, `st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_rak`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `tbl_rak` (
-  `id_rak` int(11) NOT NULL,
-  `nama_rak` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(60) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_rak`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `tbl_rak` (`id_rak`, `nama_rak`) VALUES
-(1, 'Rak Buku 1');
+INSERT INTO `users` (`id`, `name`) VALUES
+(1, 'User 1'),
+(2, 'User 2');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_biaya_denda`
+-- Indexes for table `kode_area`
 --
-ALTER TABLE `tbl_biaya_denda`
-  ADD PRIMARY KEY (`id_biaya_denda`);
+ALTER TABLE `kode_area`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `tbl_buku`
 --
 ALTER TABLE `tbl_buku`
   ADD PRIMARY KEY (`id_buku`);
-
---
--- Indexes for table `tbl_denda`
---
-ALTER TABLE `tbl_denda`
-  ADD PRIMARY KEY (`id_denda`);
-
---
--- Indexes for table `tbl_kategori`
---
-ALTER TABLE `tbl_kategori`
-  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indexes for table `tbl_login`
@@ -228,38 +179,26 @@ ALTER TABLE `tbl_pinjam`
   ADD PRIMARY KEY (`id_pinjam`);
 
 --
--- Indexes for table `tbl_rak`
+-- Indexes for table `users`
 --
-ALTER TABLE `tbl_rak`
-  ADD PRIMARY KEY (`id_rak`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tbl_biaya_denda`
+-- AUTO_INCREMENT for table `kode_area`
 --
-ALTER TABLE `tbl_biaya_denda`
-  MODIFY `id_biaya_denda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `kode_area`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_buku`
 --
 ALTER TABLE `tbl_buku`
   MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `tbl_denda`
---
-ALTER TABLE `tbl_denda`
-  MODIFY `id_denda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tbl_kategori`
---
-ALTER TABLE `tbl_kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_login`
@@ -274,10 +213,10 @@ ALTER TABLE `tbl_pinjam`
   MODIFY `id_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tbl_rak`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `tbl_rak`
-  MODIFY `id_rak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
