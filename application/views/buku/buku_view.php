@@ -15,7 +15,7 @@
 	    <div class="col-md-12">
 	        <div class="box box-primary">
                 <div class="box-header with-border">
-					<?php if($this->session->userdata('level') == 'Petugas'){?>
+					<?php if($this->session->userdata('level') == 'Admin'){?>
                     <a href="data/bukutambah"><button class="btn btn-primary">
 						<i class="fa fa-plus"> </i> Tambah Buku</button></a>
 					<?php }?>
@@ -73,9 +73,9 @@
 									?>
 								</td>
                                 <td><?= $isi['tgl_masuk'];?></td>
-									<td <?php if($this->session->userdata('level') == 'Petugas'){?>style="width:17%;"<?php }?>>
+									<td <?php if($this->session->userdata('level') == 'Admin'){?>style="width:17%;"<?php }?>>
 								
-									<?php if($this->session->userdata('level') == 'Petugas'){?>
+									<?php if($this->session->userdata('level') == 'Admin'){?>
 									<a href="<?= base_url('data/bukuedit/'.$isi['id_buku']);?>"><button class="btn btn-success"><i class="fa fa-edit"></i></button></a>
 									<a href="<?= base_url('data/bukudetail/'.$isi['id_buku']);?>">
 									<button class="btn btn-primary"><i class="fa fa-sign-in"></i> Detail</button></a>

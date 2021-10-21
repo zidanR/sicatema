@@ -30,7 +30,7 @@
         <br/>
 		</div>
         <ul class="sidebar-menu" data-widget="tree">
-			<?php if($this->session->userdata('level') == 'Petugas'){?>
+			<?php if($this->session->userdata('level') == 'Admin'){?>
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <li class="header">MAIN NAVIGATION</li>
             <li class="<?php if($this->uri->uri_string() == 'dashboard'){ echo 'active';}?>">
@@ -67,6 +67,15 @@
                             
                         </a>
                     </li>
+                    
+                
+                    
+                    <li class="<?php if($this->uri->uri_string() == 'multiple'){ echo 'active';}?>
+                <?php if($this->uri->uri_string() == 'multiple/index/'){ echo 'active';}?>
+                <?php if($this->uri->uri_string() == 'multiple/edit/'.$this->uri->segment('3')){ echo 'active';}?>">
+                <a href="<?php echo base_url('multiple');?>" class="cursor">
+                    <i class="fa fa-book"></i> <span>Data Siswa</span></a>
+			</li>
                     <li class=" <?php if($this->uri->uri_string() == 'data/kategori'){ echo 'active';}?>">
                         <a href="<?php echo base_url("data/kategori");?>" class="cursor">
                             <span class="fa fa-tags"></span> Kategori

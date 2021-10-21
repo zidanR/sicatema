@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
-<?php if($this->session->userdata('level') == 'Anggota'){ redirect(base_url('transaksi'));}?>
+<?php if($this->session->userdata('level') == 'Admin'){ redirect(base_url('transaksi'));}?>
 <!-- Content Wrapper. Contains page content -->
     <!-- Content Header (Page header) -->
   <div class="content-wrapper">
@@ -23,7 +23,7 @@
                     <div class="inner">
                       <h3><?= $count_pengguna;?></h3>
 
-                      <p>Anggota</p>
+                      <p>Admin</p>
                     </div>
                     <div class="icon">
                       <i class="fa fa-edit"></i>
