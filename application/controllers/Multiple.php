@@ -10,16 +10,29 @@ class Multiple extends CI_Controller
 
     public function index()
     {
-        $data['users'] = $this->db->get('users')->result();
-        $this->load->view('multiple/index', $data);
+        $this->data['title_web'] = 'Data Siswa ';
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['users'] = $this->db->get('users')->result();
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('siswa/index', $this->data);
+        $this->load->view('footer_view', $this->data);
+        // $this->load->view('multiple/index', $this->data);
     }
 
     public function edit($id)
     {
         // $data['kode_area'] = $this->db->get_where('kode_area', ['id_user'=>$id])->result();
-        $data['kode_area'] = $this->db->get_where('kode_area', ['id' => $id])->result_array();
-        $data['get_id'] = $id;
-        $this->load->view('multiple/edit', $data);
+        $this->data['title_web'] = 'Data Siswa ';
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['users'] = $this->db->get('users')->result();
+        $this->data['kode_area'] = $this->db->get_where('kode_area', ['id' => $id])->result_array();
+        $this->data['get_id'] = $id;
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('siswa/edit', $this->data);
+        $this->load->view('footer_view', $this->data);
+        // $this->load->view('multiple/edit', $data);
     }
 
     public function approval($id)
