@@ -20,6 +20,16 @@ class Multiple extends CI_Controller
         // $this->load->view('multiple/index', $this->data);
     }
 
+    public function add()
+    {
+        $this->data['title_web'] = 'Data Siswa';
+        $this->data['idbo'] = $this->session->userdata('ses_id');
+        $this->data['users'] = $this->input->post('users');
+        $this->load->view('header_view', $this->data);
+        $this->load->view('sidebar_view', $this->data);
+        $this->load->view('siswa/add', $this->data);
+        $this->load->view('footer_view', $this->data);
+    }
     public function edit($id)
     {
         // $data['kode_area'] = $this->db->get_where('kode_area', ['id_user'=>$id])->result();

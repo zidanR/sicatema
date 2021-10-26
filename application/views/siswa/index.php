@@ -48,6 +48,8 @@
                                                 <table class="table table-striped">
                                                     <tr>
                                                         <th>Name</th>
+                                                        <th>No Induk Siswa</th>
+                                                        <th>Kelas</th>
                                                         <th>Action</th>
                                                     </tr>
                                                     <?php
@@ -56,6 +58,8 @@
                                                     ?>
                                                         <tr>
                                                             <td><?= $row->name ?></td>
+                                                            <td><?= $row->no_induk_siswa ?></td>
+                                                            <td><?= $row->kelas ?></td>
                                                             <td>
                                                                 <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-success btn-sm">Approval</a>
                                                             </td>
