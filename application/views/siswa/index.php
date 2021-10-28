@@ -16,6 +16,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <?php if ($this->session->userdata('level') == 'Admin') { ?>
+                            <a href="multiple/add"><button class="btn btn-primary">
+                                    <i class="fa fa-plus"> </i> Tambah Data Siswa</button></a>
+                        <?php } ?>
+                    </div>
                     <div class="box-header with-border"><?php if ($this->session->userdata('level') == 'Petugas') { ?>
                             <a href="transaksi/pinjam"><button class="btn btn-primary">
                                     <i class="fa fa-plus"> </i> Tambah Pinjam</button></a><?php } ?>
