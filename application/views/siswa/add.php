@@ -15,32 +15,37 @@
 			<div class="container mt-3">
 				<div class="row justify-content-center">
 					<div class="col-md-8">
-						<div class="card">
-							<div class="card-header">
-								Tambahkan Data Siswa
-							</div>
-							<div class="form-group">
-								<label>Nama Siswa</label>
-								<input type="text" class="form-control" name="pengarang" placeholder="Nama Pengarang">
-							</div>
-							<div class="form-group">
-								<label>Nomor Induk</label>
-								<input type="text" class="form-control" name="penerbit" placeholder="Nama Penerbit">
-							</div>
-							<div class="form-group">
-								<label>Kelas</label>
-								<select name="kelas" class="form-control select2" required="required">
-									<option disabled selected value> -- Pilih Kelas -- </option>
-									<?php foreach ($users as $row) { ?>
-										<option value="<?= $row->kelas['kelas']; ?>"></option>
-									<?php } ?>
-								</select>
-								<div class="box-header with-border">
-									<input type="hidden" name="tambah" value="tambah">
-									<button type="submit" class="btn btn-primary btn-md">Submit</button>
+						<form action="" method="post">
+							<div class="card">
+								<div class="card-header">
+									Tambahkan Data Siswa
+								</div>
+								<div class="form-group">
+									<label>Nama Siswa</label>
+									<input type="text" class="form-control" name="siswa" placeholder="Nama Siswa">
+									<?= form_error('siswa', '<small class="text-danger">', '</small>') ?>
+								</div>
+								<div class="form-group">
+									<label>Nomor Induk</label>
+									<input type="text" class="form-control" name="no_induk_siswa" placeholder="No Induk Siswa">
+									<?= form_error('no_induk_siswa', '<small class="text-danger">', '</small>') ?>
+								</div>
+								<div class="form-group">
+									<label>Kelas</label>
+									<select name="kelas" class="form-control select2" required="required">
+										<option disabled selected value> -- Pilih Kelas -- </option>
+
+										<?php foreach ($users as $row) : ?>
+											<option value="<?= $row->kelas ?>"><?= $row->kelas ?></option>
+										<?php endforeach ?>
+									</select>
+									<div class="box-header with-border">
+										<input type="hidden" name="tambah" value="tambah">
+										<button type="submit" class="btn btn-primary btn-md">Submit</button>
+									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>

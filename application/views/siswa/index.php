@@ -67,7 +67,9 @@
                                                             <td><?= $row->no_induk_siswa ?></td>
                                                             <td><?= $row->kelas ?></td>
                                                             <td>
-                                                                <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-success btn-sm">Approval</a>
+                                                                <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
+                                                                <a href="<?php echo ('siswa/edit/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="<?php echo ('siswa/delete/' . $row->id) ?>" class="btn btn-danger btn-sm">Delete</a>
                                                             </td>
                                                         </tr>
                                                     <?php

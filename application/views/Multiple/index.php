@@ -64,6 +64,7 @@
                                     <td><?= $row->kelas ?></td>
                                     <td>
                                         <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-success btn-sm">Approval</a>
+
                                     </td>
                                 </tr>
                             <?php

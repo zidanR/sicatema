@@ -6,6 +6,7 @@ class Multiple extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mcrud');
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -22,13 +23,35 @@ class Multiple extends CI_Controller
 
     public function add()
     {
-        $this->data['title_web'] = 'Data Siswa';
-        $this->data['idbo'] = $this->session->userdata('ses_id');
-        $this->data['users'] = $this->input->post('users');
-        $this->load->view('header_view', $this->data);
-        $this->load->view('sidebar_view', $this->data);
-        $this->load->view('siswa/add', $this->data);
-        $this->load->view('footer_view', $this->data);
+        $this->form_validation->set_rules(
+            'siswa',
+            'Siswa',
+            'required'
+        );
+        $this->form_validation->set_rules(
+            'no_induk_siswa',
+            'Nomor Induk Siswa',
+            'required'
+        );
+        if ($this->form_validation->run() == FALSE) {
+            $this->data['title_web'] = 'Data Siswa';
+            $this->data['idbo'] = $this->session->userdata('ses_id');
+            $this->data['users'] = $this->db->get('users')->result();
+            // var_dump($this->data['users']);
+            // die;
+            $this->load->view('header_view', $this->data);
+            $this->load->view('sidebar_view', $this->data);
+            $this->load->view('siswa/add', $this->data);
+            $this->load->view('footer_view', $this->data);
+        } else {
+            $data = [
+                'name' => htmlspecialchars($this->input->post('siswa')),
+                'no_induk_siswa' => htmlspecialchars($this->input->post('no_induk_siswa')),
+                'kelas' => htmlspecialchars($this->input->post('kelas')),
+            ];
+            $this->db->insert('users', $data);
+            redirect('Multiple');
+        }
     }
     public function edit($id)
     {
