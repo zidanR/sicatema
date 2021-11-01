@@ -10,9 +10,11 @@
         </ol>
     </section>
     <section class="content">
-        <?php if (!empty($this->session->flashdata())) {
-            echo $this->session->flashdata('pesan');
-        } ?>
+        <?php if ($this->session->flashdata('users')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert"> Data Telah <strong><?= $this->session->flashdata('users') ?></strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+        <?php endif ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
@@ -67,9 +69,9 @@
                                                             <td><?= $row->no_induk_siswa ?></td>
                                                             <td><?= $row->kelas ?></td>
                                                             <td>
-                                                                <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
-                                                                <a href="<?php echo ('siswa/edit/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
-                                                                <a href="<?php echo ('siswa/delete/' . $row->id) ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                                <a href="<?php echo ('Multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
+                                                                <a href="<?php echo ('Multiple/edit_siswa/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
+                                                                <a href="<?php echo ('Multiple/delete/' . $row->id) ?>" class="btn btn-danger btn-sm">Delete</a>
                                                             </td>
                                                         </tr>
                                                     <?php

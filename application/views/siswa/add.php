@@ -35,8 +35,8 @@
 									<select name="kelas" class="form-control select2" required="required">
 										<option disabled selected value> -- Pilih Kelas -- </option>
 
-										<?php foreach ($users as $row) : ?>
-											<option value="<?= $row->kelas ?>"><?= $row->kelas ?></option>
+										<?php foreach ($kelas as $row) : ?>
+											<option value="<?= $row->nama_kelas ?>"><?= $row->nama_kelas ?></option>
 										<?php endforeach ?>
 									</select>
 									<div class="box-header with-border">
