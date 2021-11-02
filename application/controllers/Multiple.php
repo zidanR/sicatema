@@ -103,9 +103,7 @@ class Multiple extends CI_Controller
             $this->db->where('id', $id);
             $this->db->update('users', $data);
             $this->session->set_flashdata('users', 'telah diganti');
-            redirect('Multiple');
-            var_dump('users');
-            die;
+            redirect('index.php/multiple');
         }
     }
     public function delete($id)
