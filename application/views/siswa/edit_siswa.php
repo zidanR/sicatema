@@ -32,19 +32,28 @@
                                     <?= form_error('no_induk_siswa', '<small class="text-danger">', '</small>') ?>
                                 </div>
 
+                                <?php
+                                // var_dump($kelas);
+                                // die;
+                                ?>
                                 <div class="form-group">
                                     <label>Kelas</label>
                                     <select name="kelas" class="form-control select2" required="required">
                                         <option disabled selected value> -- Pilih Kelas -- </option>
 
                                         <?php foreach ($kelas as $row) : ?>
-                                            <?php if ($row->nama_kelas == $users['kelas']) : ?>
-                                                <option value="<?= $row->nama_kelas ?>" selected><?= $row->nama_kelas ?></option>
+                                            <?php
+                                            // var_dump($row);
+                                            // die;
+                                            ?>
+                                            <?php if ($row['nama_kelas'] == $users['kelas']) : ?>
+                                                <option value="<?= $row['nama_kelas'] ?>" selected><?= $row['nama_kelas'] ?></option>
                                             <?php else : ?>
-                                                <option value="<?= $row->nama_kelas ?>"><?= $row->nama_kelas ?></option>
+                                                <option value="<?= $row['nama_kelas'] ?>"><?= $row['nama_kelas'] ?></option>
                                             <?php endif ?>
                                         <?php endforeach ?>
                                     </select>
+                                    <?= form_error('kelas', '<small class="text-danger">', '</small>') ?>
                                     <div class="box-header with-border">
                                         <button type="submit" class="btn btn-primary btn-md">Simpan</button>
                                     </div>

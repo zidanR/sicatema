@@ -55,7 +55,7 @@ class Multiple extends CI_Controller
             redirect('Multiple');
         }
     }
-    public function edit_siswa($id = NULL)
+    public function edit_siswa($id)
     {
         $this->form_validation->set_rules(
             'id',
@@ -64,7 +64,7 @@ class Multiple extends CI_Controller
             ['required' => 'harus diisi']
         );
         $this->form_validation->set_rules(
-            'name',
+            'siswa',
             'name',
             'required',
             ['required' => 'harus diisi']
@@ -82,17 +82,16 @@ class Multiple extends CI_Controller
             ['required' => 'harus diisi']
         );
         if ($this->form_validation->run() == FALSE) {
-            $this->data['title_web'] = 'Edit Siswa';
-            $this->data['idbo'] = $this->session->userdata('ses_id');
-            $this->data['users'] = $this->db->get_where('users', ['id' => $id])->row_array();
-            // var_dump($this->data['users']);
+            $data['title_web'] = 'Edit Siswa';
+            $data['idbo'] = $this->session->userdata('ses_id');
+            $data['users'] = $this->Mcrud->getbyId($id);
+            $data['kelas'] = $this->Mcrud->kelas();
+            // var_dump($data['users']);
             // die;
-            $this->data['kelas'] = $this->db->get('kelas')->result();
-            $id = htmlspecialchars($this->input->post('id'));
-            $this->load->view('header_view', $this->data);
-            $this->load->view('sidebar_view', $this->data);
-            $this->load->view('siswa/edit_siswa', $this->data);
-            $this->load->view('footer_view', $this->data);
+            $this->load->view('header_view', $data);
+            $this->load->view('sidebar_view', $data);
+            $this->load->view('siswa/edit_siswa', $data);
+            $this->load->view('footer_view', $data);
         } else {
             $id = htmlspecialchars($this->input->post('id'));
             $data = [
@@ -102,8 +101,10 @@ class Multiple extends CI_Controller
             ];
             $this->db->where('id', $id);
             $this->db->update('users', $data);
+            // var_dump($this->db->last_query());
+            // die;
             $this->session->set_flashdata('users', 'telah diganti');
-            redirect('index.php/multiple');
+            redirect('multiple/index');
         }
     }
     public function delete($id)

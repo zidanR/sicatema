@@ -20,4 +20,19 @@ class Mcrud extends CI_Model
         $this->db->where('kode', $a);
         $this->db->update('kode_area', $data);
     }
+
+
+    public function getbyId($id = null)
+    {
+        if ($id != NULL) {
+            return $this->db->get_where('users', ['id' => $id])->row_array();
+        } else {
+            return $this->db->get('users')->result_array();
+        }
+    }
+
+    public function kelas()
+    {
+        return $this->db->get('kelas')->result_array();
+    }
 }
