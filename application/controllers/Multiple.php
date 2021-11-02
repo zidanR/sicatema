@@ -116,6 +116,8 @@ class Multiple extends CI_Controller
             $id = htmlspecialchars($this->input->post('id'));
             $this->db->where('id', $id);
             $this->db->delete('users');
+            $this->sesion->set_flasdata('users', 'Telah Dihapus');
+            redirect('Multiple');
         }
     }
     public function edit($id)

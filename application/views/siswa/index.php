@@ -71,7 +71,25 @@
                                                             <td>
                                                                 <a href="<?= base_url('Multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
                                                                 <a href="<?= base_url('Multiple/edit_siswa/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
-                                                                <a href="<?= base_url('Multiple/delete/' . $row->id) ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                                <button onclick="Swal.fire(
+                                                                    {
+                                                                        title: 'Apakah anda yakin ingin menghapus data?',
+                                                                        text: 'data akan di hapus permanen',
+                                                                        icon: 'warning',
+                                                                        showCancelButton: true,
+                                                                        confirmButtonColor:  '#3498db',
+                                                                        cancelButtonColor: '#FF0033',
+                                                                        confirmButtonText: 'Ya,Hapus Saja!',
+                                                                        cancelButtonText: 'Tidak, Urungkan!'}).then((result) => {
+                                                                            if(result.isConfirmed){
+                                                                                Swal.fire(
+                                                                                    'Telah dihapus',
+                                                                                    'Data telah dihapuskan',
+                                                                                    'Berhasil'
+                                                                                )
+                                                                            }
+                                                                        })
+                                                                " class="btn btn-danger" href="<?= base_url('Multiple/delete') ?>">Delete</button>
                                                             </td>
                                                         </tr>
                                                     <?php
