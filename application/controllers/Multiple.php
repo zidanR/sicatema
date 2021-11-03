@@ -161,12 +161,12 @@ class Multiple extends CI_Controller
             'id_user' => $id,
             'kode' => $a[$i]
         ];
-        var_dump($where);
-        die;
-        $data = ['status' => $b];
-        var_dump($data);
-        $this->db->last_query();
-        die;
+        // var_dump($where);
+        // die;
+        // $data = ['status' => $b];
+        // var_dump($data);
+        // $this->db->last_query();
+        // die;
 
         foreach ($b as $status) {
             if (!empty($status)) {
