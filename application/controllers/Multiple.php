@@ -107,18 +107,13 @@ class Multiple extends CI_Controller
             redirect('multiple/index');
         }
     }
-    public function delete($id)
+    public function delete()
     {
-        if ($id == NULL) {
-            $this->db->get_where('users', ['id' => $id])->result_array();
-        } else {
-            return $this->db->get_where('users', ['id' => $id])->row_array();
-            $id = htmlspecialchars($this->input->post('id'));
-            $this->db->where('id', $id);
-            $this->db->delete('users');
-            $this->sesion->set_flasdata('users', 'Telah Dihapus');
-            redirect('Multiple');
-        }
+
+        $id = htmlspecialchars($this->input->post('id'));
+        $this->db->where('id', $id);
+        $this->db->delete('users');
+        redirect('Multiple');
     }
     public function edit($id)
     {
