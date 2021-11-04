@@ -71,9 +71,9 @@
                                                             <td>
                                                                 <a href="<?= base_url('Multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
                                                                 <a href="<?= base_url('Multiple/edit_siswa/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
-                                                                <button onclick="Swal.fire(
+                                                                <a class="btn btn-danger" onclick="Swal.fire(
                                                                     {
-                                                                        title: 'Apakah anda yakin ingin menghapus data?',
+                                                                        title: 'Apakah anda yakin ingin menghapus data?'<?= $row['users'] ?>,
                                                                         text: 'data akan di hapus permanen',
                                                                         icon: 'warning',
                                                                         showCancelButton: true,
