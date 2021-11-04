@@ -71,7 +71,7 @@
                                                             <td>
                                                                 <a href="<?= base_url('Multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
                                                                 <a href="<?= base_url('Multiple/edit_siswa/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
-                                                                <a class="btn btn-danger" onclick="Swal.fire(
+                                                                <<<<<<< HEAD <a class="btn btn-danger" onclick="Swal.fire(
                                                                     {
                                                                         title: 'Apakah anda yakin ingin menghapus data?'<?= $row['users'] ?>,
                                                                         text: 'data akan di hapus permanen',
@@ -90,6 +90,37 @@
                                                                             }
                                                                         })
                                                                 " class="btn btn-danger" href="<?= base_url('Multiple/delete') ?>">Delete</button>
+                                                                    =======
+                                                                    <form action='<?= base_url('Multiple/delete/') ?>' id='deletedata' method='POST'>
+                                                                        <button class="btn btn-danger" id="swal-delete<?= $row->id ?>" type="submit" onclick="Swaldelete()">
+                                                                            Delete Tes
+                                                                        </button>
+                                                                        <script>
+                                                                            function Swaldelete() {
+                                                                                Swal.fire({
+                                                                                    title: 'Apakah anda yakin ingin menghapus data <?= $row->name ?> ?',
+                                                                                    text: 'data akan di hapus permanen',
+                                                                                    icon: 'warning',
+                                                                                    showCancelButton: true,
+                                                                                    confirmButtonColor: '#3498db',
+                                                                                    cancelButtonColor: '#FF0033',
+                                                                                    confirmButtonText: 'Ya,Hapus Saja!',
+                                                                                    cancelButtonText: 'Tidak, Urungkan!'
+                                                                                }).then((result) => {
+
+                                                                                    if (result.isConfirmed) {
+                                                                                        Swal.fire(
+                                                                                            'Telah dihapus',
+                                                                                            'Data telah dihapuskan',
+                                                                                            'Berhasil',
+                                                                                        )
+                                                                                    }
+                                                                                })
+                                                                            }
+                                                                        </script>
+                                                                        <input type='hidden' name='id' id="delete-id" value='<?= $row->id ?>'>
+                                                                    </form>
+                                                                    >>>>>>> 7d8af50d354513094bb59c7a627da11161cca005
                                                             </td>
                                                         </tr>
                                                     <?php
