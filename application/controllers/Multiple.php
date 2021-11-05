@@ -1,3 +1,4 @@
+
 <?php
 
 class Multiple extends CI_Controller
@@ -11,14 +12,18 @@ class Multiple extends CI_Controller
 
     public function index()
     {
-        $this->data['title_web'] = 'Data Siswa ';
-        $this->data['idbo'] = $this->session->userdata('ses_id');
-        $this->data['users'] = $this->db->get('users')->result();
-        $this->load->view('header_view', $this->data);
-        $this->load->view('sidebar_view', $this->data);
-        $this->load->view('multiple/index', $this->data);
-        $this->load->view('footer_view', $this->data);
-        // $this->load->view('multiple/index', $this->data);
+        if (!$this->session->userdata('ses_id')) {
+            redirect('login');
+        } else {
+            $this->data['title_web'] = 'Data Siswa ';
+            $this->data['idbo'] = $this->session->userdata('ses_id');
+            $this->data['users'] = $this->db->get('users')->result();
+            $this->load->view('header_view', $this->data);
+            $this->load->view('sidebar_view', $this->data);
+            $this->load->view('multiple/index', $this->data);
+            $this->load->view('footer_view', $this->data);
+            // $this->load->view('multiple/index', $this->data);
+        }
     }
 
     public function add()
