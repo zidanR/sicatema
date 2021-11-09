@@ -51,9 +51,21 @@
                     <a href="<?php echo base_url('user'); ?>" class="cursor">
                         <i class="fa fa-user"></i> <span>Data Pengguna</span></a>
                 </li>
-                <li class="treeview <?php if ($this->uri->uri_string() == 'data/kategori') {
-                                        echo 'active';
-                                    } ?>
+                <li class="<?php if ($this->uri->uri_string() == 'multiple') {
+                                echo 'active';
+                            } ?>
+                <?php if ($this->uri->uri_string() == 'multiple/index/') {
+                    echo 'active';
+                } ?>
+                <?php if ($this->uri->uri_string() == 'multiple/edit/' . $this->uri->segment('3')) {
+                    echo 'active';
+                } ?>">
+                    <a href="<?php echo base_url('Datasiswa'); ?>" class="cursor">
+                        <i class="fa fa-book"></i> <span>Data Siswa</span></a>
+                </li>
+                <!-- <li class="treeview <?php if ($this->uri->uri_string() == 'data/kategori') {
+                                                echo 'active';
+                                            } ?>
 				<?php if ($this->uri->uri_string() == 'data/rak') {
                     echo 'active';
                 } ?>
@@ -97,18 +109,7 @@
 
 
 
-                        <li class="<?php if ($this->uri->uri_string() == 'multiple') {
-                                        echo 'active';
-                                    } ?>
-                <?php if ($this->uri->uri_string() == 'multiple/index/') {
-                    echo 'active';
-                } ?>
-                <?php if ($this->uri->uri_string() == 'multiple/edit/' . $this->uri->segment('3')) {
-                    echo 'active';
-                } ?>">
-                            <a href="<?php echo base_url('Datasiswa'); ?>" class="cursor">
-                                <i class="fa fa-book"></i> <span>Data Siswa</span></a>
-                        </li>
+
                         <li class=" <?php if ($this->uri->uri_string() == 'data/kategori') {
                                         echo 'active';
                                     } ?>">
@@ -142,8 +143,8 @@
                 } ?>
                 <?php if ($this->uri->uri_string() == 'transaksi/kembalipinjam/' . $this->uri->segment('3')) {
                     echo 'active';
-                } ?>">
-                    <!-- <a href="#">
+                } ?>"> -->
+                <!-- <a href="#">
                         <i class="fa fa-exchange"></i>
                         <span>Transaksi</span>
                         <span class="pull-right-container">
