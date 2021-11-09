@@ -1,6 +1,6 @@
 <?php
 
-class Multiple extends CI_Controller
+class Datasiswa extends CI_Controller
 {
     public function __construct()
     {
@@ -8,7 +8,6 @@ class Multiple extends CI_Controller
         $this->load->model('Mcrud');
         $this->load->library('form_validation');
     }
-
     public function index()
     {
         $this->data['title_web'] = 'Data Siswa ';
@@ -18,9 +17,7 @@ class Multiple extends CI_Controller
         $this->load->view('sidebar_view', $this->data);
         $this->load->view('siswa/index', $this->data);
         $this->load->view('footer_view', $this->data);
-        // $this->load->view('multiple/index', $this->data);
     }
-
     public function add()
     {
         $this->form_validation->set_rules(
@@ -52,7 +49,7 @@ class Multiple extends CI_Controller
             ];
             $this->db->insert('users', $data);
             $this->session->set_flashdata('users', 'Berhasil ditambahkan!');
-            redirect('Multiple');
+            redirect('Datasiswa');
         }
     }
     public function edit_siswa($id)
@@ -104,33 +101,15 @@ class Multiple extends CI_Controller
             // var_dump($this->db->last_query());
             // die;
             $this->session->set_flashdata('users', 'telah diganti');
-            redirect('multiple/index');
+            redirect('Datasiswa');
         }
     }
-    public function delete($id)
+    public function delete()
     {
-        if ($id == NULL) {
-            $this->db->get_where('users', ['id' => $id])->result_array();
-        } else {
-            return $this->db->get_where('users', ['id' => $id])->row_array();
-            $id = htmlspecialchars($this->input->post('id'));
-            $this->db->where('id', $id);
-            $this->db->delete('users');
-            $this->sesion->set_flasdata('users', 'Telah Dihapus');
-            redirect('Multiple');
-        }
+
+        $id = htmlspecialchars($this->input->post('id'));
+        $this->db->where('id', $id);
+        $this->db->delete('users');
+        redirect('Datasiswa');
     }
-    public function edit($id)
-    {
-        // $data['kode_area'] = $this->db->get_where('kode_area', ['id_user'=>$id])->result();
-        $this->data['title_web'] = 'Data Siswa ';
-        $this->data['idbo'] = $this->session->userdata('ses_id');
-        $this->data['users'] = $this->db->get('users')->result();
-        $this->data['kode_area'] = $this->db->get_where('kode_area', ['id' => $id])->result_array();
-        $this->data['get_id'] = $id;
-        $this->load->view('header_view', $this->data);
-        $this->load->view('sidebar_view', $this->data);
-        $this->load->view('siswa/edit', $this->data);
-        $this->load->view('footer_view', $this->data);
-        // $this->load->view('multiple/edit', $data);
-    }ssss
+}

@@ -36,47 +36,39 @@
                                                 <div class="card-body">
                                                     <table class="table table-striped">
                                                         <tr>
-                                                            <th>Kode Area</th>
+                                                            <th>NIS</th>
+                                                            <th>Nama</th>
                                                             <th>Status</th>
-                                                            <th>Approval</th>
                                                         </tr>
                                                         <?php
                                                         // var_dump($get_id);
                                                         // die;
                                                         // $i = 1;
-                                                        foreach ($kode_area as $row) { ?>
-                                                            <input type="hidden" name="kode" value="<?= $row['kode'] ?>">
-                                                            <tr>
-                                                                <td><?= $row['kode'] ?></td>
-                                                                <td>
-                                                                    <?php
-                                                                    if ($row['status'] == 0) {
-                                                                    ?>
-                                                                        <span class="badge badge-warning">Pending</span>
-                                                                    <?php
-                                                                    } else {
-                                                                        echo $row['status'] == 1 ? '<span class="badge badge-success">Diterima</span>' : '<span class="badge badge-danger">Ditolak</span>';
-                                                                    }
-                                                                    ?>
-                                                                </td>
-                                                                <td>
-                                                                    <label>
-                                                                        <input type="radio" name="status" value="1" required> Diterima
-                                                                    </label>
-                                                                    <label>
-                                                                        <input type="radio" name="status" value="2" required> Ditolak
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                        <?php
-                                                            // $i++;
-                                                        }
+                                                        // var_dump($users->name);
+                                                        // die;
+
                                                         ?>
+                                                        <input type="hidden" name="name" value="<?= $users->name ?>">
+                                                        <tr>
+                                                            <td><?= $users->no_induk_siswa ?></td>
+                                                            <td><?= $users->name ?></td>
+                                                            <td>
+                                                                <?php if ($users->status == 0) : ?>
+                                                                    <span style="color: #FFFFFF; background-color:#009111" class="badge badge-success badge-pills">Default</span>
+                                                                <?php elseif ($users->staus == 1) : ?>
+                                                                    <span style="color: #FFFFFF; background-color:red" class="badge badge-danger badge-pills">Terlambat</span>
+                                                                <?php else : ?>
+                                                                    <span class="badge badge-secondary badge-pills">Pending</span>
+                                                                <?php endif ?>
+                                                                <!-- <?= $users->status ?> -->
+                                                            </td>
+                                                        </tr>
+
                                                     </table>
                                                 </div>
                                                 <div class="card-footer text-right">
                                                     <a href="<?= base_url('multiple') ?>" class="btn btn-secondary">Kembali</a>
-                                                    <button type="submit" class="btn btn-primary">Approval</button>
+                                                    <button type="submit" class="btn btn-danger">Terlambat</button>
                                                 </div>
                                             </form>
                                         </div>

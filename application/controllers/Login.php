@@ -31,7 +31,7 @@ class Login extends CI_Controller
         // if ($this->session->userdata != NULL) {
         //     redirect('dashboard');
         // }
-        $this->data['title_web'] = 'Login | Sistem Informasi Perpustakaan';
+        $this->data['title_web'] = 'Login | Sistem Informasi Pencatatan Keterlambatan Siswa';
         $this->load->view('login_view', $this->data);
     }
 

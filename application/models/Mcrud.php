@@ -7,7 +7,7 @@ class Mcrud extends CI_Model
         // $this->db->where($where)
         //         ->update($table, $data);
         //     return TRUE;
-        $a = $this->input->post('kode');
+        $nama = $this->input->post('name');
         $b = $this->input->post('status');
 
         date_default_timezone_set('Asia/Jakarta');
@@ -17,7 +17,7 @@ class Mcrud extends CI_Model
             'created_date' => date('Y-m-d H:i:s'),
         ];
         // $this->db->where('id_user', $idus);
-        $this->db->where('kode', $a);
+        $this->db->where('kode', $nama);
         $this->db->update('kode_area', $data);
     }
 
@@ -34,5 +34,11 @@ class Mcrud extends CI_Model
     public function kelas()
     {
         return $this->db->get('kelas')->result_array();
+    }
+    public function catatan()
+    {
+        return $this->db->select('*');
+        $this->db->from('catatan_terlambat');
+        $this->db->where('');
     }
 }
