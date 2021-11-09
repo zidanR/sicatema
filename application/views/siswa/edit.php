@@ -49,15 +49,13 @@
                                                             <tr>
                                                                 <td><?= $row['kode'] ?></td>
                                                                 <td>
-                                                                    <?php
-                                                                    if ($row['status'] == 0) {
-                                                                    ?>
+                                                                    <?php if ($row['status'] == 0) : ?>
+                                                                        <span class="badge badge-danger">Terlambat</span>
+
+                                                                    <?php elseif ($row['status'] == 1) : ?>
                                                                         <span class="badge badge-warning">Pending</span>
-                                                                    <?php
-                                                                    } else {
-                                                                        echo $row['status'] == 1 ? '<span class="badge badge-success">Diterima</span>' : '<span class="badge badge-danger">Ditolak</span>';
-                                                                    }
-                                                                    ?>
+                                                                    <?php endif ?>
+
                                                                 </td>
                                                                 <td>
                                                                     <label>
@@ -66,6 +64,7 @@
                                                                     <label>
                                                                         <input type="radio" name="status" value="2" required> Ditolak
                                                                     </label>
+
                                                                 </td>
                                                             </tr>
                                                         <?php

@@ -10,17 +10,15 @@
         </ol>
     </section>
     <section class="content">
-        <?php if ($this->session->flashdata('users')) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert"> Data Telah <strong><?= $this->session->flashdata('users') ?></strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-            </div>
-        <?php endif ?>
+        <?php if (!empty($this->session->flashdata())) {
+            echo $this->session->flashdata('pesan');
+        } ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php if ($this->session->userdata('level') == 'Admin') { ?>
-                            <a href="multiple/add"><button class="btn btn-primary">
+                            <a href="Datasiswa/add"><button class="btn btn-primary">
                                     <i class="fa fa-plus"> </i> Tambah Data Siswa</button></a>
                         <?php } ?>
                     </div>
@@ -69,12 +67,11 @@
                                                             <td><?= $row->no_induk_siswa ?></td>
                                                             <td><?= $row->kelas ?></td>
                                                             <td>
-                                                                <a href="<?= base_url('Multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a>
-                                                                <a href="<?= base_url('Multiple/edit_siswa/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
-                                                                <<<<<<< HEAD <a class="btn btn-danger" onclick="Swal.fire(
+                                                                <!-- <a href="<?= base_url('Multiple/edit/' . $row->id) ?>" class="btn btn-primary btn-sm">Approval</a> -->
+                                                                <a href="<?= base_url('Datasiswa/edit_siswa/' . $row->id) ?>" class="btn btn-success btn-sm">Edit</a>
+                                                                <!-- <a class="btn btn-danger" onclick="Swal.fire(
                                                                     {
-                                                                        title: 'Apakah anda yakin ingin menghapus data?'<?= $row['users'] ?>,
-                                                                        text: 'data akan di hapus permanen',
+                                                                        title: 'Apakah anda yakin ingin menghapus data?'<?= $row->name ?>,                                                                        text: 'data akan di hapus permanen',
                                                                         icon: 'warning',
                                                                         showCancelButton: true,
                                                                         confirmButtonColor:  '#3498db',
@@ -89,38 +86,37 @@
                                                                                 )
                                                                             }
                                                                         })
-                                                                " class="btn btn-danger" href="<?= base_url('Multiple/delete') ?>">Delete</button>
-                                                                    =======
-                                                                    <form action='<?= base_url('Multiple/delete/') ?>' id='deletedata' method='POST'>
-                                                                        <button class="btn btn-danger" id="swal-delete<?= $row->id ?>" type="submit" onclick="Swaldelete()">
-                                                                            Delete Tes
-                                                                        </button>
-                                                                        <script>
-                                                                            function Swaldelete() {
-                                                                                Swal.fire({
-                                                                                    title: 'Apakah anda yakin ingin menghapus data <?= $row->name ?> ?',
-                                                                                    text: 'data akan di hapus permanen',
-                                                                                    icon: 'warning',
-                                                                                    showCancelButton: true,
-                                                                                    confirmButtonColor: '#3498db',
-                                                                                    cancelButtonColor: '#FF0033',
-                                                                                    confirmButtonText: 'Ya,Hapus Saja!',
-                                                                                    cancelButtonText: 'Tidak, Urungkan!'
-                                                                                }).then((result) => {
+                                                                " class="btn btn-danger" href="<?= base_url('Multiple/delete') ?>">Delete</button> -->
+                                                                <form action='<?= base_url('Multiple/delete/') ?>' id='deletedata' method='POST'>
+                                                                    <button class="btn btn-danger" id="swal-delete<?= $row->id ?>" type="submit" onclick="Swaldelete()">
+                                                                        Delete
+                                                                    </button>
+                                                                    <script>
+                                                                        function Swaldelete() {
+                                                                            Swal.fire({
+                                                                                title: 'Apakah anda yakin ingin menghapus data <?= $row->name ?> ?',
+                                                                                text: 'data akan di hapus permanen',
+                                                                                icon: 'warning',
+                                                                                showCancelButton: true,
+                                                                                confirmButtonColor: '#3498db',
+                                                                                cancelButtonColor: '#FF0033',
+                                                                                confirmButtonText: 'Ya,Hapus Saja!',
+                                                                                cancelButtonText: 'Tidak, Urungkan!'
+                                                                            }).then((result) => {
 
-                                                                                    if (result.isConfirmed) {
-                                                                                        Swal.fire(
-                                                                                            'Telah dihapus',
-                                                                                            'Data telah dihapuskan',
-                                                                                            'Berhasil',
-                                                                                        )
-                                                                                    }
-                                                                                })
-                                                                            }
-                                                                        </script>
-                                                                        <input type='hidden' name='id' id="delete-id" value='<?= $row->id ?>'>
-                                                                    </form>
-                                                                    >>>>>>> 7d8af50d354513094bb59c7a627da11161cca005
+                                                                                if (result.isConfirmed) {
+                                                                                    Swal.fire(
+                                                                                        'Telah dihapus',
+                                                                                        'Data telah dihapuskan',
+                                                                                        'Berhasil',
+                                                                                    )
+                                                                                }
+                                                                            })
+                                                                        }
+                                                                    </script>
+                                                                    <input type='hidden' name='id' id="delete-id" value='<?= $row->id ?>'>
+                                                                </form>
+
                                                             </td>
                                                         </tr>
                                                     <?php
@@ -129,7 +125,21 @@
                                                 </table>
                                             </div>
                                             <div class="card-footer">
-                                                Page
+                                                <nav aria-label="...">
+                                                    <ul class="pagination">
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link">Previous</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item active" aria-current="page">
+                                                            <a class="page-link" href="#">2</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="#">Next</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
                                             </div>
                                         </div>
                                     </div>

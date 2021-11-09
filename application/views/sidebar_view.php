@@ -35,7 +35,7 @@
                 <li class="<?php if ($this->uri->uri_string() == 'dashboard') {
                                 echo 'active';
                             } ?>">
-                    <a href="<?php echo base_url('dashboard'); ?>">
+                    <a href="<?php echo base_url('Multiple'); ?>">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
@@ -106,7 +106,7 @@
                 <?php if ($this->uri->uri_string() == 'multiple/edit/' . $this->uri->segment('3')) {
                     echo 'active';
                 } ?>">
-                            <a href="<?php echo base_url('multiple'); ?>" class="cursor">
+                            <a href="<?php echo base_url('Datasiswa'); ?>" class="cursor">
                                 <i class="fa fa-book"></i> <span>Data Siswa</span></a>
                         </li>
                         <li class=" <?php if ($this->uri->uri_string() == 'data/kategori') {
