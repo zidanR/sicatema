@@ -40,7 +40,7 @@
                                 <tr>
                                     <th>Kode Area</th>
                                     <th>Status</th>
-                                    <th>Keterlambatan</th>
+                                    <th>Approval</th>
                                 </tr>
                                 <?php
                                 // var_dump($get_id);
@@ -51,13 +51,15 @@
                                     <tr>
                                         <td><?= $row['kode'] ?></td>
                                         <td>
-                                            <?php if ($row['status'] == 0) : ?>
-                                                <span class="badge badge-danger">Terlambat</span>
-
-                                            <?php elseif ($row['status'] == 1) : ?>
+                                            <?php
+                                            if ($row['status'] == 0) {
+                                            ?>
                                                 <span class="badge badge-warning">Pending</span>
-                                            <?php endif ?>
-
+                                            <?php
+                                            } else {
+                                                echo $row['status'] == 1 ? '<span class="badge badge-success">Diterima</span>' : '<span class="badge badge-danger">Ditolak</span>';
+                                            }
+                                            ?>
                                         </td>
                                         <td>
                                             <label>
@@ -76,7 +78,7 @@
                         </div>
                         <div class="card-footer text-right">
                             <a href="<?= base_url('multiple') ?>" class="btn btn-secondary">Kembali</a>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Approval</button>
                         </div>
                     </form>
                 </div>

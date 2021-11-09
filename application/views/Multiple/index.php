@@ -1,118 +1,84 @@
-<?php if (!defined('BASEPATH')) exit('No direct script acess allowed'); ?>
-<div class="content-wrapper">
-    <section class="content-header">
-        <h1>
-            <i class="fa fa-edit" style="color:green"> </i> <?= $title_web; ?>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i>&nbsp; Dashboard</a></li>
-            <li class="active"><i class="fa fa-file-text"></i>&nbsp; <?= $title_web; ?></li>
-        </ol>
-    </section>
-    <section class="content">
-        <?php if (!empty($this->session->flashdata())) {
-            echo $this->session->flashdata('pesan');
-        } ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border"><?php if ($this->session->userdata('level') == 'Petugas') { ?>
-                            <a href="transaksi/pinjam"><button class="btn btn-primary">
-                                    <i class="fa fa-plus"> </i> Tambah Pinjam</button></a><?php } ?>
+<!DOCTYPE html>
+<html lang="in">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update Multiple File</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-home"></i>Table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-tasks"></i>Form</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Data Multiple Users
                     </div>
-                    <!-- /.box-header -->
-
-                    <body>
-                        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                            <div class="container">
-                                <!-- <a class="navbar-brand" href="#"></a> -->
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <!-- <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="fa fa-home"></i>Table</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="fa fa-tasks"></i>Form</a>
-                                        </li>
-                                    </ul> -->
-                                </div>
+                    <div class="col-md-12">
+                        <?php
+                        $pesan = $this->session->flashdata('pesan');
+                        if ($pesan) {
+                        ?>
+                            <div class="alert alert-success">
+                                <?= $pesan ?>
                             </div>
-                        </nav>
-                        <div class="container mt-3">
-                            <div class="row justify-content-center">
-                                <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            Data Multiple Users
-                                        </div>
-                                        <div class="col-md-12">
-                                            <?php
-                                            $pesan = $this->session->flashdata('pesan');
-                                            if ($pesan) {
-                                            ?>
-                                                <div class="alert alert-success">
-                                                    <?= $pesan ?>
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                        <div class="card-body">
-                                            <table class="table table-striped">
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>No Induk Siswa</th>
-                                                    <th>Kelas</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                <?php
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Name</th>
+                                <th>No Induk Siswa</th>
+                                <th>Kelas</th>
+                                <th>Action</th>
+                            </tr>
+                            <?php
 
-                                                foreach ($users as $row) {
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $row->name ?></td>
-                                                        <td><?= $row->no_induk_siswa ?></td>
-                                                        <td><?= $row->kelas ?></td>
-                                                        <td><?= $row->kelas ?></td>
-                                                        <td>
-                                                            <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-danger btn-sm">Terlambat</a>
+                            foreach ($users as $row) {
+                            ?>
+                                <tr>
+                                    <td><?= $row->name ?></td>
+                                    <td><?= $row->no_induk_siswa ?></td>
+                                    <td><?= $row->kelas ?></td>
+                                    <td>
+                                        <a href="<?php echo ('multiple/edit/' . $row->id) ?>" class="btn btn-success btn-sm">Approval</a>
 
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </table>
-                                        </div>
-                                        <div class="card-footer">
-                                            <nav aria-label="...">
-                                                <ul class="pagination">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link">Previous</a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item active" aria-current="page">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">Next</a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </body>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </table>
+                    </div>
+                    <div class="card-footer">
+                        Page
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+</body>
+
+</html>
